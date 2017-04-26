@@ -6,8 +6,9 @@ var port = 3000;
 
 var app = express();
 
+
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(process.cwd() + "/public"));
+app.use(express.static(process.cwd() + '/public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -25,4 +26,6 @@ var routes = require("./controllers/burger_controller.js");
 
 app.use("/", routes);
 
-app.listen(port);
+app.listen(process.env.port || 3000, function(){
+	console.log("Server is listening on Port: " + port);
+});
