@@ -8,22 +8,17 @@ router.get('/', function(req,res) {
 });
 
 router.get('/burger', function(req,res) {
-	// Burger.findAll({}).then(function(data){
-	// 	var hbsObject = {burger : data}
-	// 	console.log(hbsObject)
-	// 	res.render('index', hbsObject);
-	// });
 
 	burger.all(function(data){
-		var hbsObject = {burgers : data}
-		console.log(hbsObject)
-		res.render('index', hbsObject);
+		res.render('index', {burgers : data});
 	});
 });
 
-
 router.post('/burger/create', function(req,res) {
-	burger.create(['name', 'devoured'], [req.body.name, req.body.devoured], function(data){
+	burger.create(
+		["burger_name"],
+		[req.body.burger_name], 
+		function(data){
 		res.redirect('/burger')
 	});
 });
